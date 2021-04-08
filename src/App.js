@@ -1,8 +1,9 @@
 import './App.css';
+import LandingPage from './components/LandingPage.js'
 
 function App() {
   return (
-    <p>Hello World!</p>
+    <LandingPage></LandingPage>
   );
 }
 
