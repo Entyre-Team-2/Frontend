@@ -1,10 +1,11 @@
 import './App.css';
 import LandingPage from './components/LandingPage'
 import SignUpDoctor from './components/SignUpDoctor'
+import SignUpPharmacist from './components/SignUpPharmacist'
 
 function App() {
   return (
-    <SignUpDoctor></SignUpDoctor>
+    <SignUpPharmacist></SignUpPharmacist>
   );
 }
 

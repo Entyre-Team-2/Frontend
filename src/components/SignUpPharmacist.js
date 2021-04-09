@@ -1,6 +1,6 @@
 import React from "react";
 
-function SignUpDoctor() {
+function SignUpPharmacist() {
 	const styles = {
 		rootContainer: {
 			display: "flex",
@@ -31,7 +31,7 @@ function SignUpDoctor() {
 	return (
 		<div style={styles.rootContainer}>
 			<div>
-				<h2 style={styles.heading}>Doctors</h2>
+				<h2 style={styles.heading}>Pharmacists</h2>
 			</div>
 			<div style={styles.form}>
 				<p>Name</p>
@@ -70,4 +70,4 @@ function SignUpDoctor() {
 	);
 }
 
-export default SignUpDoctor;
+export default SignUpPharmacist;
