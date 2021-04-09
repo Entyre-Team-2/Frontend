@@ -1,9 +1,10 @@
 import './App.css';
-import LandingPage from './components/LandingPage.js'
+import LandingPage from './components/LandingPage'
+import SignUpDoctor from './components/SignUpDoctor'
 
 function App() {
   return (
-    <LandingPage></LandingPage>
+    <SignUpDoctor></SignUpDoctor>
   );
 }
 
