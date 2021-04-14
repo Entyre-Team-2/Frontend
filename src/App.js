@@ -2,6 +2,7 @@ import "./App.css";
 import LandingPage from "./components/LandingPage";
 import SignUpDoctor from "./components/SignUpDoctor";
 import SignUpPharmacist from "./components/SignUpPharmacist";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 					<SignUpPharmacist></SignUpPharmacist>
 				</Route>
 				<Route path="/">
-					<LandingPage></LandingPage>
+					<Login></Login>
 				</Route>
 			</Switch>
 		</Router>
