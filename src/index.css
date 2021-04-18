@@ -58,15 +58,22 @@ code {
 	font-size: 1.5em;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: darkgray;
 	opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
 	color: darkgray;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
 	color: darkgray;
-  }
+}
+
+::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+}
