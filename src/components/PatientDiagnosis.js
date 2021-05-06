@@ -1,4 +1,12 @@
-import React from "react";
+import { React, useState } from "react";
+
+
+
+function diagnosisParser(diagnosisText) {
+	console.log(diagnosisText.split("\n"));
+}
+
+
 
 function PatientDiagnosis() {
 	const styles = {
@@ -18,23 +26,36 @@ function PatientDiagnosis() {
 		diagnosisContainer: {
 			marginBottom: "1em",
 		},
-        syntaxContainer: {
-            fontSize: "0.8em",
-            marginLeft: "0.5em"
-        },
-        button: {
-            backgroundColor: "black",
-            color: "white",
-            outline: "none",
-            border: "none",
-            width: "8em",
+		syntaxContainer: {
+			fontSize: "0.8em",
+			marginLeft: "0.5em",
+		},
+		button: {
+			backgroundColor: "black",
+			color: "white",
+			outline: "none",
+			border: "none",
+			width: "8em",
 			height: "2.5em",
 			borderRadius: "0.9em",
 			boxShadow: "0.3em 0.3em 0.1em rgba(0,0,0,0.25)",
-        }
+		},
+		textarea: {
+			outline: "none"
+		}
 	};
 
 	var patientName = "Owais Bin Asad";
+
+	const [diagnosisText, setDiagnosisText] = useState("");
+
+	const handleChange = (event) => {
+		setDiagnosisText(event.target.value);
+	};
+
+	const triggerPreview = () => {
+		diagnosisParser(diagnosisText);
+	}
 
 	return (
 		<div style={styles.rootContainer}>
@@ -48,38 +69,41 @@ function PatientDiagnosis() {
 			</div>
 
 			<div style={styles.diagnosisContainer}>
-                <div style={styles.syntaxContainer}>
-                    <p><strong>Syntax:</strong></p>
-                    <p>
-                        Diagnosis Name #1
-                        <br />
-                        Drug 1A, Strength, Form, Intake
-                        <br />
-                        Drug 1B, Strength, Form, Intake
-                    </p>
-                    <p>
-                        &lt;blank line&gt;
-                        <br />
-                        &lt;blank line&gt;
-                    </p>
-                    <p>
-                        Diagnosis Name #2
-                        <br />
-                        Drug 2A, Strength, Form, Intake
-                        <br />
-                        Drug 2B, Strength, Form, Intake
-                    </p>
-                </div>
+				<div style={styles.syntaxContainer}>
+					<p>
+						<strong>Syntax:</strong>
+					</p>
+					<p>
+						Diagnosis Name #1
+						<br />
+						Drug 1A, Strength, Form, Intake
+						<br />
+						Drug 1B, Strength, Form, Intake
+					</p>
+					<p>
+						&lt;blank line&gt;
+					</p>
+					<p>
+						Diagnosis Name #2
+						<br />
+						Drug 2A, Strength, Form, Intake
+						<br />
+						Drug 2B, Strength, Form, Intake
+					</p>
+				</div>
 				<textarea
 					name="diagnosis"
 					id="diagnosisTextarea"
 					cols="100"
 					rows="15"
-					placeholder="Refer to the above shown syntax and enter diagnosis data here."></textarea>
+					placeholder="Refer to the above shown syntax and enter diagnosis data here."
+					style={styles.textarea}
+					value={diagnosisText}
+					onChange={handleChange}></textarea>
 			</div>
 
 			<div>
-				<button style={styles.button}>Preview</button>
+				<button style={styles.button} onClick={triggerPreview}>Preview</button>
 			</div>
 		</div>
 	);
