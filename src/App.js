@@ -18,7 +18,7 @@ function App() {
 					<SignUpPharmacist></SignUpPharmacist>
 				</Route>
 				<Route path="/">
-					<PatientDiagnosis></PatientDiagnosis>
+					<Login></Login>
 				</Route>
 			</Switch>
 		</Router>
