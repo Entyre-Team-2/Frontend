@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 
 function SignUp() {
 	const styles = {
@@ -15,14 +15,14 @@ function SignUp() {
 			display: "flex",
 			flexDirection: "column",
 			alignItems: "center",
-			width: "60%"
+			width: "60%",
 		},
 		row: {
 			display: "inline-flex",
 			flexDirection: "row",
 			justifyContent: "space-between",
 			width: "100%",
-			marginBottom: "1.5em"
+			marginBottom: "1.5em",
 		},
 		input: {
 			backgroundColor: "transparent",
@@ -33,7 +33,7 @@ function SignUp() {
 			color: "white",
 			paddingBottom: "0.5em",
 			fontSize: "1em",
-			width: "40%"
+			width: "40%",
 		},
 		passwordInput: {
 			backgroundColor: "transparent",
@@ -44,7 +44,7 @@ function SignUp() {
 			color: "white",
 			paddingBottom: "0.5em",
 			fontSize: "1em",
-			width: "100%"
+			width: "100%",
 		},
 		button: {
 			backgroundColor: "white",
@@ -55,8 +55,40 @@ function SignUp() {
 			height: "2em",
 			borderRadius: "2em",
 			fontSize: "1.5em",
-			marginTop: "2em"
+			marginTop: "2em",
 		},
+	};
+
+	const [data, setData] = useState({
+		firstname: "",
+		lastname: "",
+		email: "",
+		hospitalName: "",
+		password: "",
+		repeatPassword: "",
+	});
+
+	const onChangeData = (event) => {
+		var id = event.target.name;
+		var value = event.target.value;
+
+		if (id === "firstname") {
+			setData({ ...data, firstname: value });
+		} else if (id === "lastname") {
+			setData({ ...data, lastname: value });
+		} else if (id === "email") {
+			setData({ ...data, email: value });
+		} else if (id === "hospital") {
+			setData({ ...data, hospitalName: value });
+		} else if (id === "password") {
+			setData({ ...data, password: value });
+		} else if (id === "repeatPassword") {
+			setData({ ...data, repeatPassword: value });
+		}
+	};
+
+	const triggerSignUp = () => {
+		console.log(data);
 	};
 
 	return (
@@ -72,6 +104,8 @@ function SignUp() {
 						id="firstname"
 						placeholder="First Name"
 						style={styles.input}
+						value={data.firstname}
+						onChange={onChangeData}
 					/>
 					<input
 						type="text"
@@ -79,6 +113,8 @@ function SignUp() {
 						id="lastname"
 						placeholder="Last Name"
 						style={styles.input}
+						value={data.lastname}
+						onChange={onChangeData}
 					/>
 				</div>
 				<div style={styles.row}>
@@ -88,6 +124,8 @@ function SignUp() {
 						id="email"
 						placeholder="Email"
 						style={styles.input}
+						value={data.email}
+						onChange={onChangeData}
 					/>
 					<input
 						type="text"
@@ -95,6 +133,8 @@ function SignUp() {
 						id="hospital"
 						placeholder="Hospital Name"
 						style={styles.input}
+						value={data.hospitalName}
+						onChange={onChangeData}
 					/>
 				</div>
 				<div style={styles.row}>
@@ -104,6 +144,8 @@ function SignUp() {
 						id="password"
 						placeholder="Password"
 						style={styles.passwordInput}
+						value={data.password}
+						onChange={onChangeData}
 					/>
 				</div>
 				<div style={styles.row}>
@@ -113,11 +155,15 @@ function SignUp() {
 						id="repeatPassword"
 						placeholder="Repeat Password"
 						style={styles.passwordInput}
+						value={data.repeatPassword}
+						onChange={onChangeData}
 					/>
 				</div>
 			</div>
 			<div>
-				<button style={styles.button}>Submit</button>
+				<button style={styles.button} onClick={triggerSignUp}>
+					Submit
+				</button>
 			</div>
 		</div>
 	);
