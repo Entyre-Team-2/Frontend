@@ -1,6 +1,6 @@
 import React from "react";
 
-function SignUpDoctor() {
+function SignUp() {
 	const styles = {
 		rootContainer: {
 			display: "flex",
@@ -70,4 +70,4 @@ function SignUpDoctor() {
 	);
 }
 
-export default SignUpDoctor;
+export default SignUp;

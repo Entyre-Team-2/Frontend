@@ -1,6 +1,6 @@
 import "./App.css";
 import LandingPage from "./components/LandingPage";
-import SignUpDoctor from "./components/SignUpDoctor";
+import SignUp from "./components/SignUp";
 import SignUpPharmacist from "./components/SignUpPharmacist";
 import Login from "./components/Login";
 import PatientInformation from './components/PatientInformation';
@@ -11,11 +11,8 @@ function App() {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/signUpDoctor">
-					<SignUpDoctor></SignUpDoctor>
-				</Route>
-				<Route path="/signUpPharmacist">
-					<SignUpPharmacist></SignUpPharmacist>
+				<Route path="/signUp">
+					<SignUp></SignUp>
 				</Route>
 				<Route path="/">
 					<Login></Login>

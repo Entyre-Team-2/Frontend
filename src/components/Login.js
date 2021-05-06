@@ -102,7 +102,7 @@ function Login() {
 			<div>
 				<p>
 					New to Entyre?{" "}
-					<a href="#" style={styles.link}>
+					<a href="/signUp" style={styles.link}>
 						Register here.
 					</a>
 				</p>
