@@ -5,6 +5,8 @@ import SignUpPharmacist from "./components/SignUpPharmacist";
 import Login from "./components/Login";
 import PatientInformation from './components/PatientInformation';
 import PatientDiagnosis from './components/PatientDiagnosis';
+import Dashboard from "./components/Dashboard";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +17,7 @@ function App() {
 					<SignUp></SignUp>
 				</Route>
 				<Route path="/">
-					<PatientDiagnosis></PatientDiagnosis>
+					<Dashboard></Dashboard>
 				</Route>
 			</Switch>
 		</Router>
