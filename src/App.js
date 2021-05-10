@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import PatientInformation from './components/PatientInformation';
 import PatientDiagnosis from './components/PatientDiagnosis';
 import Dashboard from "./components/Dashboard";
+import PatientDetails from "./components/PatientDetails"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -17,7 +18,7 @@ function App() {
 					<SignUp></SignUp>
 				</Route>
 				<Route path="/">
-					<Dashboard></Dashboard>
+					<PatientDetails></PatientDetails>
 				</Route>
 			</Switch>
 		</Router>
