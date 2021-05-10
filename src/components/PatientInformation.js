@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import { React, useState } from "react";
 
 function PatientInformation() {
 	const styles = {
@@ -111,7 +111,25 @@ function PatientInformation() {
 		} else if (id === "insuranceNumber") {
 			setData({ ...data, insuranceNumber: value });
 		}
-	}
+	};
+
+	const triggerSubmit = () => {
+		console.log(data);
+		fetch("http://localhost:5000/patients/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		})
+			.then((response) => response.text())
+			.then((data) => {
+				console.log("Success:", data);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+	};
 
 	return (
 		<div style={styles.rootContainer}>
@@ -197,7 +215,9 @@ function PatientInformation() {
 				/>
 			</div>
 			<div style={styles.buttonContainer}>
-				<button style={styles.button}>Next</button>
+				<button style={styles.button} onClick={triggerSubmit}>
+					Next
+				</button>
 			</div>
 		</div>
 	);
