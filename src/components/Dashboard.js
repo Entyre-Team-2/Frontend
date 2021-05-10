@@ -75,7 +75,7 @@ function Dashboard() {
 			});
 	}, []);
 
-	const [doctor, setDoctor] = useState("XYZ");
+	const [doctor, setDoctor] = useState("Nonem");
 	const [index, setIndex] = useState(0);
 	const [selectedPatientData, setSelectedPatientData] = useState({});
 

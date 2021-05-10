@@ -75,10 +75,6 @@ function PatientDiagnosis(props) {
 					<h2 style={styles.heading}>Patient's Diagnosis</h2>
 				</div>
 
-				<div style={styles.patientName}>
-					<span>Patient's Name:</span>
-					<span style={styles.patientNameSpan}>{patientName}</span>
-				</div>
 
 				<div style={styles.diagnosisContainer}>
 					<div style={styles.syntaxContainer}>
@@ -88,9 +84,9 @@ function PatientDiagnosis(props) {
 						<p>
 							Diagnosis Name #1
 							<br />
-							Drug 1A, Strength, Form, Intake
+							Drug 1A
 							<br />
-							Drug 1B, Strength, Form, Intake
+							Drug 1B
 						</p>
 						<p>
 							&lt;blank line&gt;
@@ -98,9 +94,9 @@ function PatientDiagnosis(props) {
 						<p>
 							Diagnosis Name #2
 							<br />
-							Drug 2A, Strength, Form, Intake
+							Drug 2A
 							<br />
-							Drug 2B, Strength, Form, Intake
+							Drug 2B
 						</p>
 					</div>
 					<textarea

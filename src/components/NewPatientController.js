@@ -4,6 +4,7 @@ import PatientDiagnosis from "./PatientDiagnosis";
 
 function diagnosisParser(diagnosisText) {
 	console.log(diagnosisText.split("\n"));
+	return diagnosisText.split("\n");
 }
 
 function NewPatientController() {
@@ -22,7 +23,6 @@ function NewPatientController() {
 	const [patientDiagnosis, setPatientDiagnosis] = useState("");
 
 	const submit = () => {
-		diagnosisParser(patientDiagnosis);
 		setPatientInfo({
 			firstname: "",
 			lastname: "",
@@ -34,6 +34,63 @@ function NewPatientController() {
 			insuranceNumber: "",
 		});
 		setPatientDiagnosis("");
+
+		// POST REQUEST
+
+		var diagnosticData = diagnosisParser(patientDiagnosis);
+		console.log(diagnosticData);
+
+		var counter = 0;
+		var finalData = [];
+		var temp = {
+			name: "",
+			drugs: [],
+		};
+		for (var data of diagnosticData) {
+			if (data === "") {
+				// RESET
+				counter = 0;
+				finalData.push(temp);
+				temp = {
+					name: "",
+					drugs: [],
+				};
+			} else {
+				if (counter === 0) {
+					// Diagnosis Name
+					temp.name = data;
+					counter++;
+				} else if (counter > 0) {
+					// DRUG CASE
+					temp.drugs.push(data);
+				}
+			}
+		}
+
+		counter = 0;
+		finalData.push(temp);
+		temp = {
+			name: "",
+			drugs: [],
+		};
+
+		const postData = [patientInfo, finalData];
+
+		fetch("http://localhost:8000/api/patients", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(postData),
+		})
+			.then((response) => response.text())
+			.then((data) => {
+				console.log("Success:", data);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+
 		window.location.href = "/dashboard";
 	};
 
