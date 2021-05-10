@@ -1,4 +1,4 @@
-import { React, useState, Fragment } from "react";
+import { React, useState, Fragment, useEffect } from "react";
 
 function Dashboard() {
 	const styles = {
@@ -71,6 +71,15 @@ function Dashboard() {
 		},
 	]);
 
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/users")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				setPatients(data)
+			});
+	}, []);
+
 	const [doctor, setDoctor] = useState("XYZ");
 
 	const triggerNewPatient = () => {
@@ -83,7 +92,7 @@ function Dashboard() {
 
 	const triggerSignOut = () => {
 		console.log("Sign out.");
-	}
+	};
 
 	return (
 		<Fragment>
