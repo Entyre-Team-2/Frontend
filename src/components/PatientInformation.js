@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-function PatientInformation() {
+function PatientInformation(props) {
 	const styles = {
 		rootContainer: {
 			display: "flex",
@@ -79,16 +79,8 @@ function PatientInformation() {
 		},
 	};
 
-	const [data, setData] = useState({
-		firstname: "",
-		lastname: "",
-		sex: "",
-		dob: "",
-		age: "",
-		weight: "",
-		insuranceCompany: "",
-		insuranceNumber: "",
-	});
+	const data = props.data;
+	const setData = props.setData;
 
 	const handleChange = (event) => {
 		var id = event.target.id;
@@ -129,6 +121,7 @@ function PatientInformation() {
 			.catch((error) => {
 				console.error("Error:", error);
 			});
+		props.setIndex(1);
 	};
 
 	return (

@@ -1,14 +1,6 @@
-import { React, useState } from "react";
+import { React, Fragment } from "react";
 
-
-
-function diagnosisParser(diagnosisText) {
-	console.log(diagnosisText.split("\n"));
-}
-
-
-
-function PatientDiagnosis() {
+function PatientDiagnosis(props) {
 	const styles = {
 		rootContainer: {
 			display: "flex",
@@ -16,6 +8,10 @@ function PatientDiagnosis() {
 			flexWrap: "nowrap",
 			alignItems: "center",
 			alignContent: "space-between",
+		},
+		heading: {
+			fontSize: "3em",
+			fontWeight: 400,
 		},
 		patientNameSpan: {
 			marginLeft: "2em",
@@ -42,70 +38,87 @@ function PatientDiagnosis() {
 		},
 		textarea: {
 			outline: "none"
+		},
+		backButton: {
+			backgroundColor: "white",
+			color: "black",
+			outline: "none",
+			border: "none",
+			width: "6em",
+			padding: "0.5em",
+			borderRadius: "2em",
+			marginLeft: "1em",
+			marginTop: "1em"
 		}
 	};
 
 	var patientName = "Owais Bin Asad";
 
-	const [diagnosisText, setDiagnosisText] = useState("");
+	const diagnosisText = props.data;
+	const setDiagnosisText = props.setData;
 
 	const handleChange = (event) => {
 		setDiagnosisText(event.target.value);
 	};
 
-	const triggerPreview = () => {
-		diagnosisParser(diagnosisText);
+	const triggerBack = () => {
+		props.setIndex(0);
 	}
 
 	return (
-		<div style={styles.rootContainer}>
-			<div style={styles.heading}>
-				<h2>Patient's Diagnosis</h2>
-			</div>
-
-			<div style={styles.patientName}>
-				<span>Patient's Name:</span>
-				<span style={styles.patientNameSpan}>{patientName}</span>
-			</div>
-
-			<div style={styles.diagnosisContainer}>
-				<div style={styles.syntaxContainer}>
-					<p>
-						<strong>Syntax:</strong>
-					</p>
-					<p>
-						Diagnosis Name #1
-						<br />
-						Drug 1A, Strength, Form, Intake
-						<br />
-						Drug 1B, Strength, Form, Intake
-					</p>
-					<p>
-						&lt;blank line&gt;
-					</p>
-					<p>
-						Diagnosis Name #2
-						<br />
-						Drug 2A, Strength, Form, Intake
-						<br />
-						Drug 2B, Strength, Form, Intake
-					</p>
+		<Fragment>
+			<nav>
+				<button style={styles.backButton} onClick={triggerBack}>Back</button>
+			</nav>
+			<div style={styles.rootContainer}>
+				<div>
+					<h2 style={styles.heading}>Patient's Diagnosis</h2>
 				</div>
-				<textarea
-					name="diagnosis"
-					id="diagnosisTextarea"
-					cols="100"
-					rows="15"
-					placeholder="Refer to the above shown syntax and enter diagnosis data here."
-					style={styles.textarea}
-					value={diagnosisText}
-					onChange={handleChange}></textarea>
-			</div>
 
-			<div>
-				<button style={styles.button} onClick={triggerPreview}>Preview</button>
+				<div style={styles.patientName}>
+					<span>Patient's Name:</span>
+					<span style={styles.patientNameSpan}>{patientName}</span>
+				</div>
+
+				<div style={styles.diagnosisContainer}>
+					<div style={styles.syntaxContainer}>
+						<p>
+							<strong>Syntax:</strong>
+						</p>
+						<p>
+							Diagnosis Name #1
+							<br />
+							Drug 1A, Strength, Form, Intake
+							<br />
+							Drug 1B, Strength, Form, Intake
+						</p>
+						<p>
+							&lt;blank line&gt;
+						</p>
+						<p>
+							Diagnosis Name #2
+							<br />
+							Drug 2A, Strength, Form, Intake
+							<br />
+							Drug 2B, Strength, Form, Intake
+						</p>
+					</div>
+					<textarea
+						name="diagnosis"
+						id="diagnosisTextarea"
+						cols="100"
+						rows="15"
+						placeholder="Refer to the above shown syntax and enter diagnosis data here."
+						style={styles.textarea}
+						value={diagnosisText}
+						onChange={handleChange}></textarea>
+				</div>
+
+				<div>
+					<button style={styles.button} onClick={props.submit}>Submit</button>
+				</div>
 			</div>
-		</div>
+		</Fragment>
 	);
 }
 

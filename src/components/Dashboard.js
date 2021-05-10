@@ -60,7 +60,7 @@ function Dashboard() {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
-				setPatients(data)
+				setPatients(data);
 			});
 	}, []);
 
@@ -68,6 +68,7 @@ function Dashboard() {
 
 	const triggerNewPatient = () => {
 		console.log("New Patient Triggered.");
+		window.location.href = "/newPatient";
 	};
 
 	const openPatientDetails = (name) => {
