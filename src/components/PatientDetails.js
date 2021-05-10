@@ -1,6 +1,6 @@
-import { React, useState } from "react";
+import { React, useState, Fragment } from "react";
 
-function PatientDetails() {
+function PatientDetails(props) {
 	const styles = {
 		rootContainer: {
 			display: "flex",
@@ -44,6 +44,17 @@ function PatientDetails() {
 			width: "auto",
 			justifySelf: "end",
 		},
+		backButton: {
+			backgroundColor: "white",
+			color: "black",
+			outline: "none",
+			border: "none",
+			width: "6em",
+			padding: "0.5em",
+			borderRadius: "2em",
+			marginLeft: "1em",
+			marginTop: "1em",
+		},
 	};
 
 	const [riskScore, setRiskScore] = useState(60);
@@ -60,13 +71,22 @@ function PatientDetails() {
 			case 0:
 				return (
 					<img
+						src="/check-mark.png"
+						alt="No Risk"
+						style={styles.inlineImage}
+					/>
+				);
+
+			case 1:
+				return (
+					<img
 						src="/yellow.png"
 						alt="Yellow Sign"
 						style={styles.inlineImage}
 					/>
 				);
-				
-			case 1:
+
+			case 2:
 				return (
 					<img
 						src="/orange.png"
@@ -74,8 +94,8 @@ function PatientDetails() {
 						style={styles.inlineImage}
 					/>
 				);
-				
-			case 2:
+
+			case 3:
 				return (
 					<img
 						src="/red.png"
@@ -83,7 +103,6 @@ function PatientDetails() {
 						style={styles.inlineImage}
 					/>
 				);
-				
 			default:
 				return (
 					<img
@@ -92,50 +111,79 @@ function PatientDetails() {
 						style={styles.inlineImage}
 					/>
 				);
-				
 		}
 	};
 
-	return (
-		<div style={styles.rootContainer}>
-			<div>
-				<h2 style={styles.heading}>Risk Score: {riskScore}</h2>
-			</div>
-			<div style={styles.legend}>
-				<figure>
-					<img src="/red.png" alt="Red Sign" style={styles.image} />
-					<figcaption style={styles.caption}>High Risk</figcaption>
-				</figure>
-				<figure>
-					<img
-						src="/orange.png"
-						alt="Orange Sign"
-						style={styles.image}
-					/>
-					<figcaption style={styles.caption}>Medium Risk</figcaption>
-				</figure>
-				<figure>
-					<img
-						src="/yellow.png"
-						alt="Yellow Sign"
-						style={styles.image}
-					/>
-					<figcaption style={styles.caption}>Low Risk</figcaption>
-				</figure>
-			</div>
-			<div style={styles.body}>
-				{interactions.map((interaction, index) => {
-					return (
-						<div key={index} style={styles.interactionRow}>
-							<span>{interaction[0]}</span>
-							<span>{interaction[1]}</span>
+	const triggerBack = () => {
+		window.location.href = "/dashboard";
+	};
 
-							{chooseImage(interaction[2])}
-						</div>
-					);
-				})}
+	return (
+		<Fragment>
+			<nav>
+				<button style={styles.backButton} onClick={triggerBack}>
+					Back
+				</button>
+				{console.log(props.data)}
+			</nav>
+			<div style={styles.rootContainer}>
+				<div>
+					<h2 style={styles.heading}>
+						Risk Score: {props.data.riskScore}
+					</h2>
+				</div>
+				<div style={styles.legend}>
+					<figure>
+						<img
+							src="/red.png"
+							alt="Red Sign"
+							style={styles.image}
+						/>
+						<figcaption style={styles.caption}>
+							High Risk
+						</figcaption>
+					</figure>
+					<figure>
+						<img
+							src="/orange.png"
+							alt="Orange Sign"
+							style={styles.image}
+						/>
+						<figcaption style={styles.caption}>
+							Medium Risk
+						</figcaption>
+					</figure>
+					<figure>
+						<img
+							src="/yellow.png"
+							alt="Yellow Sign"
+							style={styles.image}
+						/>
+						<figcaption style={styles.caption}>Low Risk</figcaption>
+					</figure>
+					<figure>
+						<img
+							src="/check-mark.png"
+							alt="Ok Sign"
+							style={styles.image}
+						/>
+						<figcaption style={styles.caption}>No Risk</figcaption>
+					</figure>
+				</div>
+				<div style={styles.body}>
+					{props.data.interactions.map((interaction, index) => {
+						return (
+							<div key={index} style={styles.interactionRow}>
+								<span>{interaction.drug1}</span>
+								<span>{interaction.drug2}</span>
+
+								{chooseImage(interaction.riskLevel)}
+							</div>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</Fragment>
 	);
 }
 

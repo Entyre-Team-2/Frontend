@@ -1,4 +1,5 @@
 import { React, useState, Fragment, useEffect } from "react";
+import PatientDetails from "./PatientDetails";
 
 function Dashboard() {
 	const styles = {
@@ -54,17 +55,29 @@ function Dashboard() {
 	};
 
 	const [patients, setPatients] = useState([]);
+	const [patientData, setPatientData] = useState([]);
 
 	useEffect(() => {
-		fetch("https://jsonplaceholder.typicode.com/users")
+		fetch("http://localhost:8000/api/diagnosis")
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
-				setPatients(data);
+
+				setPatientData(data);
+
+				var temp = [];
+				data.map(item => {
+					var temp2 = item.firstname + " " + item.lastname;
+					temp.push({name: temp2});
+				});
+
+				setPatients(temp);
 			});
 	}, []);
 
 	const [doctor, setDoctor] = useState("XYZ");
+	const [index, setIndex] = useState(0);
+	const [selectedPatientData, setSelectedPatientData] = useState({});
 
 	const triggerNewPatient = () => {
 		console.log("New Patient Triggered.");
@@ -73,13 +86,31 @@ function Dashboard() {
 
 	const openPatientDetails = (name) => {
 		console.log("Patient Details for:", name);
+		// Set appropriate patient data here instead of just name
+		var temp = {
+			riskScore: "",
+			interactions: []
+		};
+		
+		for(var patient of patientData) {
+			if ((patient.firstname + " " + patient.lastname) === name) {
+				temp.riskScore = patient.riskScore;
+				temp.interactions = patient.interactions;
+				break;
+			}
+		}
+
+		setSelectedPatientData(temp);
+		setIndex(1);
 	};
 
 	const triggerSignOut = () => {
 		console.log("Sign out.");
+		window.location.href = "/";
 	};
 
 	return (
+		index === 0 ? (
 		<Fragment>
 			<nav style={styles.nav}>
 				<span style={styles.greeting}>
@@ -116,6 +147,7 @@ function Dashboard() {
 				</div>
 			</div>
 		</Fragment>
+		) : <PatientDetails data={selectedPatientData}></PatientDetails>
 	);
 }
 

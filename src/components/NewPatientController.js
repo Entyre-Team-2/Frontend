@@ -34,7 +34,7 @@ function NewPatientController() {
 			insuranceNumber: "",
 		});
 		setPatientDiagnosis("");
-		window.location.href = "/";
+		window.location.href = "/dashboard";
 	};
 
 	return index === 0 ? (

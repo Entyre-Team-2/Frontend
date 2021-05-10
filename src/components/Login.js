@@ -66,6 +66,7 @@ function Login() {
 
     const triggerSignIn = () => {
         console.log(email, password);
+		window.location.href = "/dashboard";
     }
 
 	return (
