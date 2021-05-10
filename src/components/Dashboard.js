@@ -53,23 +53,7 @@ function Dashboard() {
 		},
 	};
 
-	const [patients, setPatients] = useState([
-		{
-			name: "Owais",
-		},
-		{
-			name: "Ananya",
-		},
-		{
-			name: "Prabdit",
-		},
-		{
-			name: "Advika",
-		},
-		{
-			name: "Himanshi",
-		},
-	]);
+	const [patients, setPatients] = useState([]);
 
 	useEffect(() => {
 		fetch("https://jsonplaceholder.typicode.com/users")
