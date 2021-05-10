@@ -18,7 +18,7 @@ function App() {
 					<SignUp></SignUp>
 				</Route>
 				<Route path="/">
-					<PatientInformation></PatientInformation>
+					<Dashboard></Dashboard>
 				</Route>
 			</Switch>
 		</Router>

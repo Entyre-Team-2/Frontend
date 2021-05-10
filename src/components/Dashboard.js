@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, Fragment } from "react";
 
 function Dashboard() {
 	const styles = {
@@ -33,6 +33,24 @@ function Dashboard() {
 			borderRadius: "100%",
 			marginRight: "2em",
 		},
+		nav: {
+			display: "flex",
+			flexDirection: "row",
+			justifyContent: "space-between",
+			padding: "1em",
+		},
+		signOutButton: {
+			backgroundColor: "white",
+			color: "black",
+			outline: "none",
+			border: "none",
+			width: "6em",
+			padding: "0.5em",
+			borderRadius: "2em",
+		},
+		greeting: {
+			fontSize: "1.25em",
+		},
 	};
 
 	const [patients, setPatients] = useState([
@@ -53,36 +71,57 @@ function Dashboard() {
 		},
 	]);
 
+	const [doctor, setDoctor] = useState("XYZ");
+
 	const triggerNewPatient = () => {
 		console.log("New Patient Triggered.");
 	};
 
-    const openPatientDetails = (name) => {
-        console.log("Patient Details for:", name);
-    }
+	const openPatientDetails = (name) => {
+		console.log("Patient Details for:", name);
+	};
+
+	const triggerSignOut = () => {
+		console.log("Sign out.");
+	}
 
 	return (
-		<div style={styles.rootContainer}>
-			<div>
-				<h2 style={styles.heading}>Patients</h2>
-			</div>
-			<div style={styles.body}>
-				<div style={styles.patientRow} onClick={triggerNewPatient}>
-					<span style={styles.plusSign}>+</span>
-					<span>New Patient</span>
+		<Fragment>
+			<nav style={styles.nav}>
+				<span style={styles.greeting}>
+					Hi, <strong>Dr. {doctor}</strong>
+				</span>
+				<button style={styles.signOutButton} onClick={triggerSignOut}>
+					Sign Out
+				</button>
+			</nav>
+			<div style={styles.rootContainer}>
+				<div>
+					<h2 style={styles.heading}>Patients</h2>
 				</div>
-				{patients.map((patient, index) => {
-					return (
-						<div style={styles.patientRow} key={index} onClick={() => openPatientDetails(patient.name)}>
-							<span>{index + 1}.</span>
-							<span style={styles.patientName}>
-								{patient.name}
-							</span>
-						</div>
-					);
-				})}
+				<div style={styles.body}>
+					<div style={styles.patientRow} onClick={triggerNewPatient}>
+						<span style={styles.plusSign}>+</span>
+						<span>New Patient</span>
+					</div>
+					{patients.map((patient, index) => {
+						return (
+							<div
+								style={styles.patientRow}
+								key={index}
+								onClick={() =>
+									openPatientDetails(patient.name)
+								}>
+								<span>{index + 1}.</span>
+								<span style={styles.patientName}>
+									{patient.name}
+								</span>
+							</div>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</Fragment>
 	);
 }
 
