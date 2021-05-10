@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 
 function PatientInformation() {
 	const styles = {
@@ -79,6 +79,40 @@ function PatientInformation() {
 		},
 	};
 
+	const [data, setData] = useState({
+		firstname: "",
+		lastname: "",
+		sex: "",
+		dob: "",
+		age: "",
+		weight: "",
+		insuranceCompany: "",
+		insuranceNumber: "",
+	});
+
+	const handleChange = (event) => {
+		var id = event.target.id;
+		var value = event.target.value;
+
+		if (id === "firstname") {
+			setData({ ...data, firstname: value });
+		} else if (id === "lastname") {
+			setData({ ...data, lastname: value });
+		} else if (id === "sex") {
+			setData({ ...data, sex: value });
+		} else if (id === "dob") {
+			setData({ ...data, dob: value });
+		} else if (id === "age") {
+			setData({ ...data, age: value });
+		} else if (id === "weight") {
+			setData({ ...data, weight: value });
+		} else if (id === "insuranceCompany") {
+			setData({ ...data, insuranceCompany: value });
+		} else if (id === "insuranceNumber") {
+			setData({ ...data, insuranceNumber: value });
+		}
+	}
+
 	return (
 		<div style={styles.rootContainer}>
 			<div style={styles.headingContainer}>
@@ -88,16 +122,20 @@ function PatientInformation() {
 				<input
 					type="text"
 					name="firstName"
-					id="firstName"
+					id="firstname"
 					placeholder="First Name"
 					style={styles.input}
+					value={data.firstname}
+					onChange={handleChange}
 				/>
 				<input
 					type="text"
 					name="lastName"
-					id="lastName"
+					id="lastname"
 					placeholder="Last Name"
 					style={styles.input}
+					value={data.lastname}
+					onChange={handleChange}
 				/>
 				<input
 					type="text"
@@ -105,6 +143,8 @@ function PatientInformation() {
 					id="sex"
 					placeholder="Sex"
 					style={styles.input}
+					value={data.sex}
+					onChange={handleChange}
 				/>
 			</div>
 			<div style={styles.inputFieldsContainer}>
@@ -114,6 +154,8 @@ function PatientInformation() {
 					id="dob"
 					placeholder="Date of Birth"
 					style={styles.dateInput}
+					value={data.dob}
+					onChange={handleChange}
 				/>
 				<input
 					type="number"
@@ -121,6 +163,8 @@ function PatientInformation() {
 					id="age"
 					placeholder="Age"
 					style={styles.input}
+					value={data.age}
+					onChange={handleChange}
 				/>
 				<input
 					type="number"
@@ -128,6 +172,8 @@ function PatientInformation() {
 					id="weight"
 					placeholder="Weight"
 					style={styles.input}
+					value={data.weight}
+					onChange={handleChange}
 				/>
 			</div>
 			<div style={styles.insuranceInputContainer}>
@@ -137,13 +183,17 @@ function PatientInformation() {
 					id="insuranceCompany"
 					placeholder="Insurace Company"
 					style={styles.insuranceInput}
+					value={data.insuranceCompany}
+					onChange={handleChange}
 				/>
 				<input
-					type="number"
+					type="text"
 					name="insuranceNumber"
 					id="insuranceNumber"
 					placeholder="Insurance Number"
 					style={styles.insuranceInput}
+					value={data.insuranceNumber}
+					onChange={handleChange}
 				/>
 			</div>
 			<div style={styles.buttonContainer}>
